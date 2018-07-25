@@ -2,6 +2,6 @@
 {
     class Const
     {
-        public const string Url = "https://dottatecteste.azurewebsites.net";
+        public const string Url = "https://seuServico.azurewebsites.net";
     }
 }
