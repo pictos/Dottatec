@@ -11,11 +11,11 @@ Para o desenvolvimento deste projeto foram utilizados:
 
 ## Download do aplicativo
 
-O aplicativo pode ser baixado em versões para Android(>= 4.4) e UWP. Como não possuio MAC a versão para iOS não estará disponivel.
+O aplicativo pode ser baixado em versões para Android(>= 4.4) e UWP. Como não possuo MAC a versão para iOS não estará disponível.
 
 ## Para fazer uso do código
 
-Por motivos obvios, eu retirei todas as chaves e links deste projeto, para utilizar basta fazer as devidas alterações.
+Por motivos óbvios, eu retirei todas as chaves e links deste projeto, para utilizar basta fazer as devidas alterações.
 
 Caso queria utilizar o AppCenter, basta adicionar o código abaixo na classe App.xaml.cs, se não quiser utilizar o AppCenter basta deletar os usings.
 
