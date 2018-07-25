@@ -24,7 +24,6 @@ namespace Dottatec.ViewModels
                 if (SetProperty(ref isBusy, value))
                 {
                     CadastrarCommand.ChangeCanExecute();
-                    //EditarCommand.ChangeCanExecute();
                 }
             }
         }
@@ -33,7 +32,7 @@ namespace Dottatec.ViewModels
 
         public Command CadastrarCommand               { get; }
 
-        //public Command<Usuario> EditarCommand         { get; }
+        public Command LogOffCommand                  { get; }
 
         #endregion
 
@@ -41,19 +40,56 @@ namespace Dottatec.ViewModels
 
         public override async Task InitializeAsync(object[] args)
         {
+            IsBusy = true;
+
             await RemovePage(typeof(LoginPage));
-            //Obter dados do Banco e popular aqui
             if (args != null)
             {
                 user = (Usuario)args[0];
-                Titulo += $" - {user.Nome}";
                 Settings.NomeL = user.Nome;
                 //Em aplicação real, jamais guardar senha no dispositivo,
                 //Exceto se for criptografada.
                 Settings.SenhaL = user.Senha;
             }
-           await AtualizarLista();
-            
+            Titulo += $" - {Settings.NomeL}";
+            await AtualizarLista();
+
+            IsBusy = false;
+        }
+
+        public UsuariosViewModel()
+        {
+            Inscrever();
+            Titulo           = "Lista de Usuários";
+            Usuarios         = new ObservableCollection<Usuario>();
+            CadastrarCommand = new Command(async () => await ExecuteCadastrarCommand(), () => !IsBusy);
+            LogOffCommand    = new Command(async () => await ExecuteLogOffCommand(), () => !isBusy);
+        }
+
+        async Task ExecuteLogOffCommand()
+        {
+
+            if (!IsBusy)
+            {
+                try
+                {
+                    IsBusy = true;
+                    Settings.NomeL = string.Empty;
+                    Settings.SenhaL = string.Empty;
+                    await PushAsync<LoginViewModel>();
+
+                }
+                catch (Exception ex)
+                {
+
+                    await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+            return;
         }
 
         private async Task AtualizarLista()
@@ -66,15 +102,6 @@ namespace Dottatec.ViewModels
                 Usuarios.Add(item);
         }
 
-        public UsuariosViewModel()
-        {
-            Inscrever();
-            Titulo           = "Lista de Usuários";
-            Usuarios         = new ObservableCollection<Usuario>();
-            CadastrarCommand = new Command(async () => await ExecuteCadastrarCommand(), () => !IsBusy);
-            //EditarCommand    = new Command<Usuario>(async u => await ExecuteEditarCommand(u), u => !IsBusy);
-        }
-
         private void Inscrever()
         {
             MessagingCenter.Subscribe<Atualizar>(this, nameof(Atualizar), async sender =>
@@ -85,7 +112,6 @@ namespace Dottatec.ViewModels
 
         public async Task ExecuteEditarCommand(Usuario usuario)
         {
-
             if (!IsBusy)
             {
                 try
@@ -96,7 +122,7 @@ namespace Dottatec.ViewModels
                 }
                 catch (Exception ex)
                 {
-
+                    ex.Report();
                     await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
                 }
                 finally
@@ -119,7 +145,7 @@ namespace Dottatec.ViewModels
                 }
                 catch (Exception ex)
                 {
-
+                    ex.Report();
                     await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
                 }
                 finally

@@ -3,6 +3,8 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using Dottatec.Utils;
+using Dottatec.Views;
 
 namespace Dottatec.ViewModels
 {
@@ -43,7 +45,10 @@ namespace Dottatec.ViewModels
         public Command LogarCommand { get; }
 
         #endregion
-
+        public async override Task InitializeAsync(object[] args)
+        {
+            await RemovePage(typeof(UsuariosPage));
+        }
         public LoginViewModel()
         {
             LogarCommand = new Command(async () => await ExecuteLogarCommand(), () => !IsBusy);
@@ -80,6 +85,7 @@ namespace Dottatec.ViewModels
                 }
                 catch (Exception ex)
                 {
+                    ex.Report();
                     await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
                 }
                 finally

@@ -106,7 +106,7 @@ namespace Dottatec.ViewModels
                 }
                 catch (Exception ex)
                 {
-
+                    ex.Report();
                     await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
                 }
                 finally
@@ -148,6 +148,7 @@ namespace Dottatec.ViewModels
                 }
                 catch (Exception ex)
                 {
+                    ex.Report();
                     await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
                 }
                 finally

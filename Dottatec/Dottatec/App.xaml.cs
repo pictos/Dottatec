@@ -2,6 +2,9 @@ using Dottatec.Servicos;
 using Dottatec.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Dottatec
@@ -12,15 +15,16 @@ namespace Dottatec
         {
             InitializeComponent();
 
-            //if (!Settings.Logado)
-            MainPage = new NavigationPage(new Views.LoginPage());
-            //else
-            //MainPage = new NavigationPage(new Views.CadastrarUsuarioPage());
+            if (!Settings.Logado)
+                MainPage = new NavigationPage(new Views.LoginPage());
+            else
+                MainPage = new NavigationPage(new Views.UsuariosPage());
         }
 
         protected async override void OnStart()
         {
             // Handle when your app starts
+            
             await BDAzure.Current.InitiAsync();
         }
 
