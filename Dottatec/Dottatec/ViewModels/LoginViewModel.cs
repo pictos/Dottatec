@@ -42,7 +42,9 @@ namespace Dottatec.ViewModels
             set { SetProperty(ref senha, value); }
         }
 
-        public Command LogarCommand { get; }
+        public Command LogarCommand     { get; }
+
+        public Command CadastrarCommand { get; }
 
         #endregion
         public async override Task InitializeAsync(object[] args)
@@ -51,11 +53,34 @@ namespace Dottatec.ViewModels
         }
         public LoginViewModel()
         {
-            LogarCommand = new Command(async () => await ExecuteLogarCommand(), () => !IsBusy);
-            Senha        = string.Empty;
-            Usuario      = string.Empty;
+            LogarCommand     = new Command(async () => await ExecuteLogarCommand(), () => !IsBusy);
+            CadastrarCommand = new Command(async () => await ExecuteCadastrarCommand(), () => !IsBusy);
+            Senha            = string.Empty;
+            Usuario          = string.Empty;
         }
-      
+
+        async Task ExecuteCadastrarCommand()
+        {
+            if (!IsBusy)
+            {
+                try
+                {
+                    IsBusy = true;
+                    await PushAsync<CadastrarUsuarioViewModel>();
+
+                }
+                catch (Exception ex)
+                {
+
+                    await DisplayAlert("Erro", $"Erro:{ex.Message}", "Ok");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+            return; 
+        }
 
         async Task ExecuteLogarCommand()
         {

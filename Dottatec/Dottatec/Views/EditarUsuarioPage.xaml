@@ -4,41 +4,45 @@
              xmlns:local ="clr-namespace:Dottatec.Behavior"
              x:Class     ="Dottatec.Views.EditarUsuarioPage"
              Title       ="Editar Usuário">
-   
-    <ContentPage.Content>
-       
-            <StackLayout Padding="10"
-                         VerticalOptions="CenterAndExpand">
-           
-                <ActivityIndicator IsEnabled="{Binding IsBusy}"
-                                   IsVisible="{Binding IsBusy}"
-                                   IsRunning="{Binding IsBusy}"/>
-            <Entry Text="{Binding Nome}" 
-                   Placeholder="Entre com o nome a ser salvo."/>
-                <Entry Text="{Binding Senha}" 
-                   Placeholder="Entre com a senha."
-                   IsPassword="True"/>
-                <Entry Text="{Binding CPF}" 
-                   Placeholder="Entre com o CPF.">
-                    <Entry.Behaviors>
-                        <local:ValidarCPF/>
-                    </Entry.Behaviors>
-                </Entry>
-                <Entry Text="{Binding Email}" 
-                   Placeholder="Entre com email de contato.">
-                    <Entry.Behaviors>
-                        <local:ValidarEmail/>
-                    </Entry.Behaviors>
-                </Entry>
 
-                <Button Text ="Salvar alterações"
+    <ContentPage.Content>
+
+        <StackLayout Padding="10"
+                     VerticalOptions="CenterAndExpand">
+
+            <ActivityIndicator IsEnabled="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"/>
+
+            <Label Text="Nome:"/>
+            <Entry Text="{Binding Nome}" />
+
+            <Label Text="Senha:"/>
+            <Entry Text="{Binding Senha}" 
+                   IsPassword="True"/>
+            <Label Text="CPF:"/>
+            <Entry Text="{Binding CPF}" 
+                   Placeholder="Entre com o CPF.">
+                <Entry.Behaviors>
+                    <local:ValidarCPF/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="Email:"/>
+            <Entry Text="{Binding Email}" 
+                   Placeholder="Entre com email de contato.">
+                <Entry.Behaviors>
+                    <local:ValidarEmail/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Button Text     ="Salvar alterações"
                     Command  ="{Binding SalvarCommand}"/>
-                
-                <Button Text            ="Excluir cadastro"
-                        Command         ="{Binding ExcluirCommand}"
-                        BackgroundColor ="Red"
-                        Margin          ="10,0"/>
-            </StackLayout>
-        
+
+            <Button Text            ="Excluir cadastro"
+                    Command         ="{Binding ExcluirCommand}"
+                    BackgroundColor ="Red"
+                    Margin          ="10,0"/>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

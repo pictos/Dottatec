@@ -1,15 +1,9 @@
-﻿using Dottatec.Models;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace Dottatec.Utils
 {
     public class Utilitarios
     {
-        //public static bool CPFValido { get; private set; } = false;
-
         public static string Raiz { get; set; } = string.Empty;
 
         public static bool ValidaCPF(string cpf)
@@ -58,51 +52,5 @@ namespace Dottatec.Utils
 
         public static bool ValidaGeral(string cpf, string email) 
             => (ValidaCPF(cpf) && ValidaEmail(email));
-
-        public static async Task<IEnumerable<Usuario>> ObterUsuarios()
-        {
-            await Task.Delay(1000);
-
-            var usuarios = new Usuario[]
-            {
-                new Usuario
-                {
-                    CPF = "10737317663",
-                    Nome = "Pedro",
-                    Email = "pedro.pj.souza@hotmail.com",
-                    Senha = "pedro123"
-                },
-                new Usuario
-                {
-                    CPF = "12345678909",
-                    Nome = "Carlos",
-                    Email = "teste@hotmail.com",
-                    Senha = "pedro123"
-                },
-                new Usuario
-                {
-                    CPF = "10737317663",
-                    Nome = "Luciene",
-                    Email = "eu@hotmail.com",
-                    Senha = "pedro123"
-                },
-                new Usuario
-                {
-                    CPF = "10737317663",
-                    Nome = "Gabriel",
-                    Email = "ele@hotmail.com",
-                    Senha = "pedro123"
-                },
-                new Usuario
-                {
-                    CPF = "10737317663",
-                    Nome = "Carla",
-                    Email = "ela@hotmail.com",
-                    Senha = "pedro123"
-                },
-            };
-
-            return usuarios;
-        }
     }
 }

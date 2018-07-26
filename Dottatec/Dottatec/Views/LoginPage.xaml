@@ -48,6 +48,12 @@
                 </Button.Triggers>
             </Button>
 
+            <Label Text="Novo aqui? Clique abaixo para se cadastrar."
+                   HorizontalOptions="Center"/>
+            
+            <Button Text="Cadastrar"
+                    Command="{Binding CadastrarCommand}"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

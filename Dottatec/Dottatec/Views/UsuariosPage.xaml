@@ -5,8 +5,8 @@
              Title   ="{Binding Titulo}">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding CadastrarCommand}" Text="Adicionar"/>
-        <ToolbarItem Command="{Binding LogOffCommand}"    Text="Desconectar"/>
+        <ToolbarItem Icon="add.png"   Command="{Binding CadastrarCommand}" Text="Adicionar"/>
+        <ToolbarItem Icon="power.png" Command="{Binding LogOffCommand}"    Text="Desconectar"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
