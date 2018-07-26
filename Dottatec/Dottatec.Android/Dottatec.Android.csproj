@@ -68,6 +68,7 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dependencia\NotificacaoAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,10 +96,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dottatec\Dottatec.csproj">
-      <Project>{7FA63B3B-C11B-4C39-B26B-B836556D8F60}</Project>
+      <Project>{dbb54d05-25ab-4f12-8275-b67552c11209}</Project>
       <Name>Dottatec</Name>
     </ProjectReference>
   </ItemGroup>

@@ -16,7 +16,7 @@ namespace Dottatec.Utils
             Analytics.TrackEvent($"{ex.GetType().Name} ({caller})",
                       new Dictionary<string, string>()
                       {
-                          {"menssagem", ex.Message}
+                          {"mensagem", ex.Message}
                       });
         }
     }

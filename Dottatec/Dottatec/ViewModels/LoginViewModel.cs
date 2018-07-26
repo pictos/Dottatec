@@ -47,10 +47,9 @@ namespace Dottatec.ViewModels
         public Command CadastrarCommand { get; }
 
         #endregion
-        public async override Task InitializeAsync(object[] args)
-        {
-            await RemovePage(typeof(UsuariosPage));
-        }
+        public async override Task InitializeAsync(object[] args) 
+            => await RemovePage(typeof(UsuariosPage));
+
         public LoginViewModel()
         {
             LogarCommand     = new Command(async () => await ExecuteLogarCommand(), () => !IsBusy);
@@ -96,8 +95,7 @@ namespace Dottatec.ViewModels
                         return;
                     }
 
-
-                    var lista = await BDAzure.Current.ObterUsuariosAsync();
+                    var lista = await BDAzure.Current.ObterUsuarioAsync(Usuario,Senha);
                     var teste = lista.FirstOrDefault(x => x.Nome == Usuario && x.Senha == Senha);
 
                     if (teste != null)

@@ -1,10 +1,9 @@
-﻿using Dottatec.Mensagens;
+﻿using Dottatec.Interfaces;
+using Dottatec.Mensagens;
 using Dottatec.Models;
 using Dottatec.Servicos;
 using Dottatec.Utils;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -76,7 +75,7 @@ namespace Dottatec.ViewModels
 
             if(args[0] is Usuario)
             {
-                user = (Usuario)args[0];
+                user  = (Usuario)args[0];
                 Senha = user.Senha;
                 Nome  = user.Nome;
                 Email = user.Email;
@@ -101,6 +100,7 @@ namespace Dottatec.ViewModels
                 {
                     IsBusy = true;
                     await BDAzure.Current.DeletarUsuario(user);
+                    DependencyService.Get<INotificacao>().Notificar("Usuario Excluído.");
                     MessagingCenter.Send<Atualizar>(new Atualizar(), nameof(Atualizar));
                     await PopAsync();
                 }
@@ -140,6 +140,8 @@ namespace Dottatec.ViewModels
 
 
                     await  BDAzure.Current.SalvarUsuarioAsync(user);
+
+                    DependencyService.Get<INotificacao>().Notificar("Alterações salvas.");
 
                     MessagingCenter.Send<Atualizar>(new Atualizar(), nameof(Atualizar));
 

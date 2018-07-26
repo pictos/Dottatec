@@ -24,7 +24,9 @@ namespace Dottatec
         protected async override void OnStart()
         {
             // Handle when your app starts
-            
+            AppCenter.Start("android=;"
+                + "uwp={Your UWP App secret here};" 
+                + "ios={Your iOS App secret here}", typeof(Analytics), typeof(Crashes));
             await BDAzure.Current.InitiAsync();
         }
 

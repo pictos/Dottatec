@@ -1,4 +1,5 @@
-﻿using Dottatec.Mensagens;
+﻿using Dottatec.Interfaces;
+using Dottatec.Mensagens;
 using Dottatec.Models;
 using Dottatec.Servicos;
 using Dottatec.Utils;
@@ -88,6 +89,8 @@ namespace Dottatec.ViewModels
                         Email = Email,
                         CPF   = CPF
                     });
+
+                    DependencyService.Get<INotificacao>().Notificar("Usuario cadastrado.");
 
                     Senha = string.Empty;
                     Nome  = string.Empty;

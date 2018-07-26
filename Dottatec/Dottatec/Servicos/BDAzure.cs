@@ -16,10 +16,7 @@ namespace Dottatec.Servicos
 
         public static BDAzure Current => LazyAzure.Value;
 
-        BDAzure()
-        {
-            
-        }
+        BDAzure() { }
 
         public MobileServiceClient Cliente { get; private set; }
         IMobileServiceSyncTable<Usuario> usuarios;
@@ -114,15 +111,16 @@ namespace Dottatec.Servicos
             }
         }
 
-        public async Task ObterUsuarioAsync(string Nome)
+        public async Task<IEnumerable<Usuario>> ObterUsuarioAsync(string nome, string senha)
         {
             try
             {
                 var query = from n in usuarios
-                            where n.Nome == Nome
+                            where n.Nome == nome && n.Senha == senha
                             select n;
 
-                var teste = await usuarios.ReadAsync(query);
+                var consulta = await usuarios.ReadAsync(query);
+                return consulta;
             }
             catch (Exception ex)
             {

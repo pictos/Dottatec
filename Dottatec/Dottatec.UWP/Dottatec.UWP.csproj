@@ -100,6 +100,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dependencia\NotificacaoUWP.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -167,13 +168,13 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dottatec\Dottatec.csproj">
-      <Project>{7FA63B3B-C11B-4C39-B26B-B836556D8F60}</Project>
-      <Name>Dottatec</Name>
-    </ProjectReference>
+    <None Include="Dottatec.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dottatec.UWP_TemporaryKey.pfx" />
+    <ProjectReference Include="..\Dottatec\Dottatec.csproj">
+      <Project>{dbb54d05-25ab-4f12-8275-b67552c11209}</Project>
+      <Name>Dottatec</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
